@@ -20,3 +20,46 @@ I'm a passionate student with a deep interest in computers and web development, 
 # Additional Information
 I'm currently working on improving my skills in machine learning and want to become good and all stuff computer. I also enjoy playing games and reading books.
 
+
+erDiagram
+    PRODUCT {
+        string Productid PK
+        string Name
+        string Size
+        string Color
+        float Price
+    }
+
+    CUSTOMER {
+        string Customerid PK
+        string Name
+        string Email
+        string Phone
+        string Address
+    }
+
+    SALE {
+        string Saleid PK
+        date Saledate
+        float TotalAmount
+        string PaymentMethod
+        string CustomerID FK
+        string ProductID FK
+    }
+
+    INVENTORY {
+        string Inventoryid PK
+        string Productid FK
+        QuantityAvailable
+    }
+
+    CUSTOMMER ||--o| SALE: makes
+    SALE ||--o| PRODUCT: contains
+    PRODUCT ||--o| INVENTORY: StockedIn
+
+Explanation of the ERD
+Products to Sales: One product may appear in many sales, and one sale may include many products. This can be represented by the inclusion of a foreign key called ProductID in the SALE entity.
+
+Customers to Sales: Each sale is related to one customer. Hence, one customer can have many sales. This is reflected in the inclusion of a foreign key called CustomerID in the SALE entity.
+
+Product to Inventory: For each product, there will be a current stock level reflected in an inventory record. The ProductID foreign key will be included in the INVENTORY entity; therefore, one product can have only one inventory record for it-one-to-one relationship.
